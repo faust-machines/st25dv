@@ -1,0 +1,6 @@
+if(CONFIG_ST25DV)
+  add_subdirectory(.. build)
+  set_property(GLOBAL APPEND PROPERTY ZEPHYR_INTERFACE_LIBS st25dv)
+  #zephyr_include_directories(../include)
+  #zephyr_interface_library_named(st25dv)
+endif()
