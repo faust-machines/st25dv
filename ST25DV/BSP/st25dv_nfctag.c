@@ -57,7 +57,7 @@
 /** @defgroup ST25DV_NFCTAG_Private_Variables
  * @{
  */
-static NFCTAG_DrvTypeDef *Nfctag_Drv = nullptr;
+static NFCTAG_DrvTypeDef *Nfctag_Drv = NULL;
 static uint8_t NfctagInitialized = 0;
 /**
  * @}
@@ -93,7 +93,7 @@ NFCTAG_StatusTypeDef BSP_NFCTAG_Init(void)
         Nfctag_Drv = &St25Dv_i2c_Drv;
         Nfctag_Drv->pData = &St25Dv_i2c_ExtDrv;
     } else {
-        Nfctag_Drv = nullptr;
+        Nfctag_Drv = NULL;
         NfctagInitialized = 0;
         return NFCTAG_ERROR;
     }
@@ -108,8 +108,8 @@ NFCTAG_StatusTypeDef BSP_NFCTAG_Init(void)
   */
 void BSP_NFCTAG_DeInit(void)
 {
-  Nfctag_Drv->pData = nullptr;
-  Nfctag_Drv = nullptr;
+  Nfctag_Drv->pData = NULL;
+  Nfctag_Drv = NULL;
   NfctagInitialized = 0;
 }
 

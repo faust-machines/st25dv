@@ -13,7 +13,7 @@ target_include_directories(st25dv PUBLIC
 )
 
 target_sources(st25dv PRIVATE
-    ST25DV/BSP/st25dv_nfctag.cpp
+    ST25DV/BSP/st25dv_nfctag.c
     ST25DV/libNDEF/lib_NDEF_AAR.c
     ST25DV/libNDEF/lib_NDEF_Bluetooth.c
     ST25DV/libNDEF/lib_NDEF_Email.c
