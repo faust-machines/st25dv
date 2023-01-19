@@ -7,9 +7,7 @@ target_compile_options(st25dv PRIVATE -Wall -Wextra)
 set_target_properties(st25dv PROPERTIES C_STANDARD 11)
 
 target_include_directories(st25dv PUBLIC 
-    ST25DV/BSP
-    ST25DV/libNDEF
-    ST25DV/ST25DV
+    .
 )
 
 target_sources(st25dv PRIVATE
