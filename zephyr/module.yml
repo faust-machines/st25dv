@@ -1,0 +1,4 @@
+name: st25dv
+build:
+  cmake: .
+  kconfig: zephyr/Kconfig.st25dv

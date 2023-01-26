@@ -1,18 +1,10 @@
-cmake_minimum_required(VERSION 3.20.0)
+if(CONFIG_LIBST25DV)
+zephyr_interface_library_named(LIBST25DV)
 
-project(st25dv)
+zephyr_include_directories(.)
 
-add_library(st25dv)
-target_compile_options(st25dv PRIVATE -Wall -Wextra)
-set_target_properties(st25dv PROPERTIES C_STANDARD 11)
-
-target_include_directories(st25dv PUBLIC 
-    ST25DV/BSP
-    ST25DV/libNDEF
-    ST25DV/ST25DV
-)
-
-target_sources(st25dv PRIVATE
+zephyr_library()
+zephyr_library_sources(
     ST25DV/BSP/st25dv_nfctag.c
     ST25DV/libNDEF/lib_NDEF_AAR.c
     ST25DV/libNDEF/lib_NDEF_Bluetooth.c
@@ -30,6 +22,6 @@ target_sources(st25dv PRIVATE
     ST25DV/ST25DV/st25dv.c
 )
 
-file(CONFIGURE OUTPUT .gitignore
-  NEWLINE_STYLE UNIX
-  CONTENT "*")
+zephyr_library_link_libraries(LIBST25DV)
+target_link_libraries(LIBST25DV INTERFACE zephyr_interface)
+endif()
