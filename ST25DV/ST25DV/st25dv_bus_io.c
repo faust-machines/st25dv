@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(st25dv_bus_io, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(st25dv_bus_io, LOG_LEVEL_WRN);
 
 #define DT_DRV_COMPAT st_st25dv
 
@@ -59,10 +59,6 @@ NFCTAG_StatusTypeDef ST25DV_IO_MemRead(uint8_t *const pData, const uint8_t DevAd
     LOG_DBG("ST25DV_IO_MemRead");
     uint8_t addr_buf[2] = {TarAddr >> 8, TarAddr & 0xFF};
 
-    // Print the address buffer
-    for (int i = 0; i < 2; i++) {
-        LOG_INF("Address buffer: %d", addr_buf[i]);
-    }
     struct i2c_msg msgs[2] = {
         {.buf = addr_buf, .len = 2, .flags = I2C_MSG_WRITE},
         {.buf = pData, .len = Size, .flags = I2C_MSG_READ | I2C_MSG_RESTART | I2C_MSG_STOP}
@@ -90,11 +86,6 @@ NFCTAG_StatusTypeDef ST25DV_IO_Read(uint8_t *const pData, const uint8_t DevAddr,
     st25dv_i2c.addr = DevAddr;
     // k_sleep(K_MSEC(1)); // Slow down the I2C communication
     if (i2c_transfer_dt(&st25dv_i2c, &msg, 1) == 0) {
-        // Print received data
-        for (int i = 0; i < Size; i++) {
-            LOG_INF("Received data: %d", pData[i]);
-        }
-
         return NFCTAG_OK;
     }
     return NFCTAG_ERROR;
