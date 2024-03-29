@@ -1,0 +1,21 @@
+description: |
+  STMicroelectronics ST25DV NFC Dynamic Tag
+
+compatible: "st,st25dv"
+
+include: [i2c-device.yaml]
+
+properties:
+  wp-gpios:
+    type: phandle-array
+    required: false
+    description: GPIO used for write protect.
+
+  interrupt-gpios:
+    type: phandle-array
+    required: true
+    description: GPIO used to indicate IRQ/events.
+
+  label:
+    type: string
+    description: Human readable string describing the device (used as device_get_binding() argument)

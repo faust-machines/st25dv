@@ -31,6 +31,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "st25dv.h"
 #include <stddef.h>
+#include "st25dv_bus_io.h"
+#include <zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(st25dv, LOG_LEVEL_DBG);
 
 /** @addtogroup BSP
   * @{
@@ -1092,7 +1096,7 @@ NFCTAG_StatusTypeDef ST25DV_i2c_ReadMemSize(ST25DV_MEM_SIZE *const pSizeInfo)
     return status;
   }
 
-  /* Extract Memory information */
+  /* Extract Memory information */ 
   pSizeInfo->BlockSize = reg_value[2];
   pSizeInfo->Mem_Size = reg_value[1];
   pSizeInfo->Mem_Size = (pSizeInfo->Mem_Size << 8) | reg_value[0];
